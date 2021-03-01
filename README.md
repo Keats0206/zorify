@@ -2,6 +2,17 @@
 
 # Zora Gallery
 
-Open protocols demand open access. Zora Gallery is a community-operated interface to the [Zora Protocol](https://zora.engineering).
+Forked [https://github.com/Anish-Agnihotri/zora.gallery/blob/master/LICENSE] and built a streaming layer on top of the Zora Protocol. Specifcally, this platfrom streams audio urls.
 
-[MIT License](https://github.com/Anish-Agnihotri/zora.gallery/blob/master/LICENSE).
+Technology used:
+- Next.js
+- SASS
+- TheGraph
+- GraphQL
+- Axios 
+- Firmidable (Magic Auth)
+- Metamask
+- Fleek for hosting
+
+Open protocols demand open streaming. Zora Gallery is a community-operated interface to the [Zora Protocol](https://zora.engineering).
+
