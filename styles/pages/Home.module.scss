@@ -1,23 +1,9 @@
-// Subheader disclaimer
-.subheader {
-  padding: 0px 30px 30px 30px;
-  text-align: center;
-  opacity: 0.5;
-  line-height: 150%;
-
-  a {
-    text-decoration: underline;
-  }
-}
-
 // Showcase container
 .showcase {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0px, 1fr));
-  grid-auto-rows: 1fr;
-  gap: 50px 30px;
+  display: inline;
   max-width: 1400px;
-  margin: 0px auto;
+  overflow-y: scroll;
+  min-width: fit-content;
 }
 
 // Loading state

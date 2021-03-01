@@ -1,16 +1,16 @@
 import client from "@data/index"; // GraphQL client
-import Post from "@components/Post"; // Post component
+import Row from "@components/Row"; // Post component
 import Layout from "@components/Layout"; // Layout
 import { useState, useEffect } from "react"; // React state management
 import { getPostByID } from "@data/functions"; // Post collection helper
 import styles from "@styles/pages/Home.module.scss"; // Component styles
 import { calculateLatestCreation, ZORA_CREATIONS_BY_USER } from "@data/queries"; // queries
+import Player from '@components/Player';
 
 export default function Home() {
   const [posts, setPosts] = useState([]); // Posts array
   const [loading, setLoading] = useState(false); // Button loading state
   const [numPosts, setNumPosts] = useState(null); // Number of loadable posts
-
   /**
    * Collects initial 6 posts to display
    */
@@ -53,7 +53,6 @@ export default function Home() {
         newPosts.push(post);
       }
     }
-
     setPosts([...posts, ...newPosts]); // Append newPosts to posts array
     setNumPosts(numPosts - 6); // Update number of loadable posts count
     setLoading(false); // Toggle button loading
@@ -65,28 +64,20 @@ export default function Home() {
   return (
     <Layout>
       {/* Subheader disclaimer */}
+      {posts.length > 0 ? (
       <div className={styles.subheader}>
-        <span>
-          Zora.Gallery is an{" "}
-          <a
-            href="https://github.com/anish-agnihotri/zora.gallery"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            open-source
-          </a>{" "}
-          community-operated interface to{" "}
-          <a
-            href="https://zora.engineering"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ZoraOS
-          </a>
-          .
-        </span>
+        <Player
+          creatorAddress={posts[0].creator.id}
+          ownerAddress={posts[0].owner.id}
+          createdAtTimestamp={posts[0].createdAtTimestamp}
+          mimeType={posts[0].metadata.mimeType}
+          contentURI={posts[0].contentURI}
+          name={posts[0].metadata.name}
+        />
       </div>
-
+      ) : (
+        <div></div>
+      )}
       {posts.length > 0 ? (
         // If posts array contains > 0 posts
         <>
@@ -95,7 +86,7 @@ export default function Home() {
               // For each Zora post
               return (
                 // Return Post component
-                <Post
+                <Row
                   key={i}
                   creatorAddress={post.creator.id}
                   ownerAddress={post.owner.id}
@@ -103,11 +94,10 @@ export default function Home() {
                   mimeType={post.metadata.mimeType}
                   contentURI={post.contentURI}
                   name={post.metadata.name}
-                />
+                 />
               );
             })}
           </div>
-
           {posts && posts.length > 0 && posts[posts.length - 1].id !== "0" ? (
             // If there remain posts that can be loaded, display button
             <div className={styles.showcase__more}>

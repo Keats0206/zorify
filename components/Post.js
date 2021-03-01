@@ -75,7 +75,6 @@ export default function Post({
       <div>
         {/* Metadata: name */}
         <h3>{name}</h3>
-
         {/* Metadata: Owner */}
         <span>
           Collected by{" "}
