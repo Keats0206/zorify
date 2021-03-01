@@ -1,6 +1,6 @@
 <img src="https://zora.gallery/logo_orb.png" height="50" width="50">
 
-# Zora Gallery
+# Zorify - Zora Streaming Platform
 
 Forked [https://github.com/Anish-Agnihotri/zora.gallery/blob/master/LICENSE] and built a streaming layer on top of the Zora Protocol. Specifcally, this platfrom streams audio urls.
 
