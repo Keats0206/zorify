@@ -3,14 +3,19 @@ import makeBlockie from "ethereum-blockies-base64"; // Ethereum avatar
 import PlayArrow from '@material-ui/icons/PlayArrow'
 
 export default function Row({
+  post,
   creatorAddress,
   ownerAddress,
   createdAtTimestamp,
   mimeType,
   contentURI,
   name,
+  getPost,
   ...props
 }) {
+
+  const handleClick = () => getPost(post);
+
   return (
    <div className={styles.row}>
         <div className={styles.row_image}>
@@ -24,7 +29,10 @@ export default function Row({
             3:33
         </div>
         <div className={styles.row_icon}>
-            <PlayArrow fontSize="large" />
+          <PlayArrow 
+            fontSize="large" 
+            onClick={handleClick}
+          />
         </div>
    </div>
   );
