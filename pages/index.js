@@ -6,12 +6,13 @@ import { getPostByID } from "@data/functions"; // Post collection helper
 import styles from "@styles/pages/Home.module.scss"; // Component styles
 import { calculateLatestCreation, ZORA_CREATIONS_BY_USER } from "@data/queries"; // queries
 import Player from '@components/Player';
+import next from "next";
 
 export default function Home() {
   const [posts, setPosts] = useState([]); // Posts array
   const [loading, setLoading] = useState(false); // Button loading state
   const [numPosts, setNumPosts] = useState(null); // Number of loadable posts
-  const [nowPlaying, setNowPlaying] = useState([]) // Currently Playing Post
+  const [nowPlaying, setNowPlaying] = useState(0) // Currently Playing Post
   /**
    * Collects initial 6 posts to display
    */
@@ -66,14 +67,20 @@ export default function Home() {
     let nowPlaying = []
     nowPlaying.unshift(post)
     setNowPlaying([...nowPlaying]);
-    console.log(nowPlaying);
   };
 
-  const skipTrack = () => {
-    console.log("skip track")
-    let nowPlaying = []
-    nowPlaying.unshift(post)
-    setNowPlaying([...nowPlaying]);
+  function skipTrack() {
+    const nextIndex = posts.indexOf(nowPlaying[0]) + 1
+    const nextPost = posts[nextIndex]
+    if (nextPost) {
+      nowPlaying.unshift(nextPost)
+      setNowPlaying([...nowPlaying])
+    } else {
+      console.log(error)
+      // check if there are more tracks to load...
+      // if exist, load more tracks...
+      // if no more tracks to load, show this is the end message...
+    }
   };
 
   return (
@@ -82,6 +89,7 @@ export default function Home() {
       {posts.length > 0 && nowPlaying.length > 0 ?  (
         <div className={styles.subheader}>
           <Player
+            assetId={nowPlaying[0].id}
             creatorAddress={nowPlaying[0].creator.id}
             ownerAddress={nowPlaying[0].owner.id}
             createdAtTimestamp={nowPlaying[0].createdAtTimestamp}
@@ -105,6 +113,7 @@ export default function Home() {
                 <Row
                   key={i}
                   post={post}
+                  assetId={post.id}
                   creatorAddress={post.creator.id}
                   ownerAddress={post.owner.id}
                   createdAtTimestamp={post.createdAtTimestamp}

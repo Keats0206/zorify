@@ -4,6 +4,7 @@ import PlayArrow from '@material-ui/icons/PlayArrow'
 
 export default function Row({
   post,
+  assetId,
   creatorAddress,
   ownerAddress,
   createdAtTimestamp,

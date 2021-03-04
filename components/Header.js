@@ -24,7 +24,6 @@ export default function Header() {
           </a>
         </Link>
       </div>
-
       {/* Menu */}
       <div className={styles.header__menu}>
         {address ? (

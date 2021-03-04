@@ -7,10 +7,8 @@ export default function Layout({ children }, isProfile) {
     <div>
       {/* Meta */}
       <Meta isProfile={isProfile} />
-
       {/* Header */}
       <Header />
-
       {/* Content container */}
       <div className={styles.container}>{children}</div>
     </div>

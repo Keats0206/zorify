@@ -1,6 +1,8 @@
 import styles from "@styles/components/Player.module.scss"; // Component styles
 
 export default function Player({
+    post,
+    assetId,
     creatorAddress,
     ownerAddress,
     createdAtTimestamp,
@@ -10,7 +12,11 @@ export default function Player({
     skipTrack,
     ...props
     }) {
-        const handleClick = () => skipTrack();
+    const handleClick = () => skipTrack();
+
+    function openLink() {
+        window.open("https://zora.co/" + creatorAddress + "/" + assetId)
+    }    
     return (
     <div className={styles.player}>
         <div className={styles.player_media}>
@@ -63,6 +69,7 @@ export default function Player({
                 </button>
                 <button 
                     className={styles.player_link}
+                    onClick={openLink}
                 >Bid</button>
             </div>
         </div>
